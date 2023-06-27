@@ -7,6 +7,12 @@ const addProduct = async (req: Request, res: Response): Promise<Response> => {
   return res.status(result.status).json(result.message);
 };
 
+const findAll = async (req: Request, res: Response): Promise<Response> => {
+  const result = await ProductService.findAll();
+  return res.status(result.status).json(result.message);
+};
+
 export default {
   addProduct,
+  findAll,
 };

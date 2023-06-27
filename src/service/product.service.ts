@@ -14,14 +14,23 @@ const addProduct = async (name: string, price: string, orderId: number) : Promis
       status: 201,
       message: retorno,
     };
-    // }
-  } 
+  }
+  // } 
   return {
     status: 404,
     message: { message: 'Order Not Found' },
   };
 };
 
+const findAll = async () : Promise<Returns> => {
+  const products = await ProductModel.findAll();
+  return {
+    status: 200,
+    message: products,
+  };
+};
+
 export default {
   addProduct,
+  findAll,
 };
