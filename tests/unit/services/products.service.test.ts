@@ -19,17 +19,37 @@ describe('ProductsService', function () {
       price: "30 peças de ouro"
       }
     }
-    sinon.stub(OrderModel, 'findOne').returns(1 as any);
+    // sinon.stub(OrderModel, 'findOne').returns(1 as any);
     sinon.stub(ProductModel, 'create').returns(expectedProduct as any);
     sinon.stub(ProductModel, 'findOne').returns(expectedProduct.dataValues as any);
-
     const result = await ProductService.addProduct(body.name,
       body.price, body.orderId);
-    console.log('result', result)
     expect(result).to.deep.equal({
       status: 201,
       message: expectedProduct.dataValues,
     });
+  });
+  it('testando retorno incorreto da função addProduct', async function () {
+    const body = {
+      name: "Martelo de Thor",
+      price: "30 peças de ouro",
+      orderId: 3
+    };
+    const expectedProduct = { dataValues: {
+      id: 6,
+      name: "Martelo de Thor",
+      price: "30 peças de ouro"
+      }
+    }
+    const response = {
+      status: 404,
+      message: { message: 'Order Not Found' },
+    }
+    sinon.stub(ProductModel, 'create').returns(expectedProduct as any);
+    sinon.stub(OrderModel, 'findOne').returns(null as any);
+    const result = await ProductService.addProduct(body.name,
+      body.price, body.orderId);
+
   });
   it('verificando retorno correto da função findAll', async function () {
     const expectedProducts = [
@@ -65,7 +85,6 @@ describe('ProductsService', function () {
       },
     ]
     sinon.stub(ProductModel, 'findAll').returns(expectedProducts as any);
-
     const result = await ProductService.findAll();
     expect(result).to.deep.equal({
       status: 200,

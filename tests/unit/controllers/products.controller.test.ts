@@ -2,6 +2,8 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Request, Response } from 'express';
+import ProductService from '../../../src/service/product.service';
+import ProductController from '../../../src/controller/products.controller';
 
 chai.use(sinonChai);
 
@@ -14,5 +16,23 @@ describe('ProductsController', function () {
     res.json = sinon.stub().returns(res);
     sinon.restore();
   });
-
+  it('verificando retorno correto da função addProduct', async function () {
+    const body = {
+      name: "Martelo de Thor",
+      price: "30 peças de ouro",
+      orderId: 3
+    };
+    const expectedProduct = { status: 201,
+      message: {
+      id: 6,
+      name: "Martelo de Thor",
+      price: "30 peças de ouro"
+      }
+    }
+    req.body = body;
+    sinon.stub(ProductService, 'addProduct').returns(expectedProduct as any);
+    const result = await ProductController.addProduct(req, res);
+    expect(res.status).to.have.been.calledWith(expectedProduct.status);
+    expect(res.json).to.have.been.calledWith(expectedProduct.message);
+    });
 });
