@@ -53,35 +53,30 @@ describe('ProductsService', function () {
   });
   it('verificando retorno correto da função findAll', async function () {
     const expectedProducts = [
-      { dataValues: {
+      {
         id: 1,
         name: "Martelo de Thor",
         price: "30 peças de ouro"
-        }
-      },
-      { dataValues: {
+        },
+      {
         id: 2,
         name: "Arco e Flecha de Legolas",
         price: "15 peças de ouro"
-        }
       },
-      { dataValues: {
+      {
         id: 3,
         name: "Espada de Aço Valiriano",
         price: "50 peças de ouro"
-        }
       },
-      { dataValues: {
+      {
         id: 4,
         name: "Escudo de Capitão América",
         price: "10 peças de ouro"
-        }
       },
-      { dataValues: {
+      {
         id: 5,
         name: "Mjolnir",
         price: "30 peças de ouro"
-        }
       },
     ]
     sinon.stub(ProductModel, 'findAll').returns(expectedProducts as any);
