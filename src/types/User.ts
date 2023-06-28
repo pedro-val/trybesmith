@@ -4,4 +4,5 @@ export type User = {
   vocation: string,
   level: number,
   password: string,
+  token?: string,
 };
