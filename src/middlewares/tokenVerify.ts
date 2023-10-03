@@ -3,7 +3,8 @@ import jwtUtil from '../utils/jwt';
 import UserModel from '../database/models/user.model';
 import { User } from '../types/User';
 
-async function authMiddleware(req: Request, res: Response, next: NextFunction): Promise<unknown> {
+async function authMiddleware(req: Request, res: Response, next: NextFunction)
+  : Promise<Response | void> {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({ message: 'Token é obrigatório' });
