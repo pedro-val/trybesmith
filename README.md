@@ -13,7 +13,17 @@ Os testes foram criados na raiz da aplicação, em um diretório chamado tests.
 
 Todos os tipos Order, Product e User do projeto, localizados na pasta src/types, foram devidamente implementados. Isso foi necessário para executar as migrations.
 
-Atenção ⚠️: Todas as importações foram realizadas com caminhos relativos.
+## Tecnologias Utilizadas
+
+- [Node.js](https://nodejs.org/): Plataforma que permite a execução de JavaScript no servidor.
+- [Typescript](https://www.typescriptlang.org/): Linguagem de programação que melhora a qualidade do código com tipagem estática.
+- [Sequelize](https://sequelize.org/): ORM para interagir com bancos de dados relacionais.
+- [JSON Web Tokens (JWT)](https://jwt.io/): Método de autenticação para proteger rotas de acesso restrito.
+- [Docker](https://www.docker.com/): Plataforma para desenvolver, enviar e executar aplicativos em contêineres.
+- [PostgreSQL](https://www.postgresql.org/): Sistema de gerenciamento de banco de dados relacional.
+- [Jest](https://jestjs.io/): Estrutura de teste para JavaScript.
+
+Essas tecnologias formam a base do projeto "Trybesmith" e são fundamentais para o desenvolvimento da API e dos serviços relacionados a itens medievais e pedidos.
 
 1 - Foi criado um endpoint para o cadastro de produtos e testes que abrangem as funcionalidades desse endpoint.
   - O endpoint foi acessível no caminho (/products).
