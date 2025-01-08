@@ -1,79 +1,74 @@
-# Bem-vindo ao repositório do projeto Trybesmith
+### Trybesmith Project Repository
+### 👨‍💻 What was developed
+In this project, a medieval items store, such as customized swords, was created in the form of an API, using Typescript and Sequelize.
 
-👨‍💻 O que foi desenvolvido
-Neste projeto, uma loja de itens medievais, como espadas personalizadas, no formato de uma API, foi criada, utilizando Typescript e Sequelize.
+The Service and Controller layers of the application were developed, using JWT to authenticate some routes, and tests were implemented to ensure proper functionality. The application has endpoints that support create, read, and update operations.
 
-As camadas de Service e Controllers da aplicação foram desenvolvidas, utilizando JWT para autenticar algumas rotas, e testes foram implementados para garantir o funcionamento adequado. A aplicação possui endpoints que oferecem suporte para operações de criação, leitura e atualização de informações.
+There was no Front-end in this project. The focus was solely on functionality and code quality, without worrying about visualization.
 
-Não havia um Front-end neste projeto. Não foi necessário se preocupar com a visualização, apenas com as funcionalidades e a qualidade do código.
+The API was developed inside the ./src folder.
 
-A API foi desenvolvida dentro da pasta ./src.
+Tests were created at the root of the application, in a directory called tests.
 
-Os testes foram criados na raiz da aplicação, em um diretório chamado tests.
+All the types Order, Product, and User from the project, located in the src/types folder, were properly implemented. This was necessary to execute the migrations.
 
-Todos os tipos Order, Product e User do projeto, localizados na pasta src/types, foram devidamente implementados. Isso foi necessário para executar as migrations.
+### Technologies Used
+Node.js: A platform that allows running JavaScript on the server.
+Typescript: A programming language that improves code quality with static typing.
+Sequelize: ORM for interacting with relational databases.
+JSON Web Tokens (JWT): An authentication method to secure restricted access routes.
+Docker: A platform for developing, shipping, and running applications in containers.
+PostgreSQL: Relational database management system.
+Jest: Testing framework for JavaScript.
+These technologies form the foundation of the Trybesmith project and are essential for the development of the API and services related to medieval items and orders.
 
-## Tecnologias Utilizadas
+### Features Implemented
 
-- [Node.js](https://nodejs.org/): Plataforma que permite a execução de JavaScript no servidor.
-- [Typescript](https://www.typescriptlang.org/): Linguagem de programação que melhora a qualidade do código com tipagem estática.
-- [Sequelize](https://sequelize.org/): ORM para interagir com bancos de dados relacionais.
-- [JSON Web Tokens (JWT)](https://jwt.io/): Método de autenticação para proteger rotas de acesso restrito.
-- [Docker](https://www.docker.com/): Plataforma para desenvolver, enviar e executar aplicativos em contêineres.
-- [PostgreSQL](https://www.postgresql.org/): Sistema de gerenciamento de banco de dados relacional.
-- [Jest](https://jestjs.io/): Estrutura de teste para JavaScript.
+### Product Registration Endpoint
+### Endpoint available at /products.
+The products sent were saved in the products table in the database.
+Endpoint structure:
+{
+  "name": "Thor's Hammer",
+  "price": "30 gold pieces",
+  "orderId": 4
+}
+Tests ensured at least 30% code coverage for the Service and Controller layers.
 
-Essas tecnologias formam a base do projeto "Trybesmith" e são fundamentais para o desenvolvimento da API e dos serviços relacionados a itens medievais e pedidos.
+### Product Listing Endpoint
+### Endpoint available at /products.
+Tests ensured at least 50% code coverage for the Service and Controller layers.
 
-1 - Foi criado um endpoint para o cadastro de produtos e testes que abrangem as funcionalidades desse endpoint.
-  - O endpoint foi acessível no caminho (/products).
-  - Os produtos enviados foram salvos na tabela products do banco de dados.
-  - O endpoint recebeu a seguinte estrutura:
-    ```json
-    {
-      "name": "Martelo de Thor",
-      "price": "30 peças de ouro",
-      "orderId": 4
-    }
-    ```
-  - Os testes garantiram pelo menos 30% de cobertura do código das camadas Service e Controller.
+### Order Listing Endpoint
+### Endpoint available at /orders.
+The route returned all orders and their associated product IDs.
+Tests ensured at least 60% code coverage for the Service and Controller layers.
 
-2 - Foi criado um endpoint para a listagem de produtos e testes que abrangem as funcionalidades desse endpoint.
-  - O endpoint foi acessível no caminho (/products).
-  - Os testes garantiram pelo menos 50% de cobertura do código das camadas Service e Controller.
+### User Login Endpoint
+### Endpoint available at /login.
+The route received the username and password fields, validated against the database.
+A JWT token was generated and returned upon successful login, containing the user’s ID and username in the payload.
+Endpoint structure:
+json
+Copy code
+{
+  "username": "string",
+  "password": "string"
+}
+Tests ensured at least 70% code coverage for the Service and Controller layers.
+Product Validations and Tests
 
-3 - Foi criado um endpoint para listar todos os pedidos e testes que abrangem as funcionalidades desse endpoint.
-  - O endpoint foi acessível no caminho (/orders).
-  - A rota retornou todos os pedidos e os IDs dos produtos associados a eles.
-  - Os testes garantiram pelo menos 60% de cobertura do código das camadas Service e Controller.
+Validations were implemented for the product creation endpoint.
+Tests ensured at least 80% code coverage for the Service and Controller layers.
 
-4 - Foi criado um endpoint para o login de pessoas usuárias e testes que abrangem as funcionalidades desse endpoint.
-  - O endpoint foi acessível no caminho (/login).
-  - A rota recebeu os campos username e password, validados no banco de dados.
-  - Um token JWT foi gerado e retornado em caso de sucesso no login, contendo o id e username no payload.
-  - O endpoint recebeu a seguinte estrutura:
-    ```json
-    {
-      "username": "string",
-      "password": "string"
-    }
-    ```
-  - Os testes garantiram pelo menos 70% de cobertura do código das camadas Service e Controller.
-
-5 - Foram criadas validações para os produtos e testes que abrangem as funcionalidades desse endpoint.
-  - As validações foram implementadas referentes à criação do endpoint do requisito 1.
-  - Os testes garantiram pelo menos 80% de cobertura do código das camadas Service e Controller.
-
-6 - Foi criado um endpoint para o cadastro de um pedido e testes que abrangem as funcionalidades desse endpoint.
-  - O endpoint foi acessível no caminho (/orders).
-  - Um pedido só pôde ser criado se a pessoa usuária estivesse logada e o token JWT fosse validado.
-  - Os pedidos enviados foram salvos na tabela orders do banco de dados, incluindo o id da pessoa usuária que fez o pedido.
-  - A tabela products foi atualizada, atualizando todos os produtos com os IDs incluídos na chave productIds da requisição e adicionando o orderId do pedido recém-criado.
-  - O endpoint recebeu a seguinte estrutura:
-    ```json
-    {
-      "productIds": [1, 2],
-      "userId": 1
-    }
-    ```
-  - Os testes garantiram pelo menos 90% de cobertura do código das camadas Service e Controller.
+### Order Registration Endpoint
+### Endpoint available at /orders.
+An order could only be created if the user was logged in and the JWT token was validated.
+The submitted orders were saved in the orders table in the database, including the user’s ID.
+The products table was updated, setting the orderId for the products included in the productIds field of the request.
+Endpoint structure:
+{
+  "productIds": [1, 2],
+  "userId": 1
+}
+Tests ensured at least 90% code coverage for the Service and Controller layers.
